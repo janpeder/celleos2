@@ -1,0 +1,16 @@
+#!/bin/sh
+
+lb config noauto \
+   --distribution bookworm \
+   -a amd64 \
+   -b iso-hybrid \
+   --iso-application celleos \
+   --iso-preparer "Jan Peder David-Andersen" \
+   --iso-volume celleos-install \
+   --debian-installer live \
+   --archive-areas "main non-free-firmware" \
+   --mirror-binary http://ftp.no.debian.org/debian \
+   --win32-loader false \
+   --updates true \
+   --linux-packages "linux-image linux-headers" \
+   "${@}"

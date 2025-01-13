@@ -1,0 +1,8 @@
+Du finner dokumentasjon for Python ved å lime inn følgende lenke i nettleseren (for eksempel Firefox):
+file:///usr/share/doc/python3-doc/html/index.html
+
+De to mest interessante lenkene å trykke på i dokumentasjonen er
+* Tutorial
+* Library Reference
+
+
