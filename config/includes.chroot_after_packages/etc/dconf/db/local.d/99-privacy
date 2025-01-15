@@ -1,5 +1,5 @@
 # Denne deaktiverer integrasjonen mellom Gnome og USBGuard
 # Det er lurt fordi Gnome sin måte å bruke USBGuard på er masete
 # (og usikker)
-[org.gnome.desktop.privacy]
+[org/gnome/desktop/privacy]
 usb-protection=false

@@ -1,2 +1,2 @@
 # prevent changes to the usb-protection setting
-org/gnome/desktop/privacy/usb-protection
+/org/gnome/desktop/privacy/usb-protection
