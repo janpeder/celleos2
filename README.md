@@ -53,7 +53,7 @@ apt install qemu-kvm qemu-utils
 ```
 Then, create a virtaul disk to install Celleos on, e.g:
 ```
-qemu-img create ~/disk.img 8G
+qemu-img create ~/disk.img 16G
 ```
 To start installing Celleos on your virtual disk, run:
 ```
