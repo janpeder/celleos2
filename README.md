@@ -1,4 +1,4 @@
-# celleos-livebuild
+# celleos2
 
 Variant of Debian Linux for use in prison cells by prisoners without supervision. Focus is on security and education.
 
@@ -14,7 +14,7 @@ The following steps describes how to build a ISO image for installing celleos. Y
 First, install the required packages (as root):
 ```
 apt update
-apt install live-build genisoimage syslinux-utils mtools git
+apt install live-build git
 ```
 
 Then, check out this repository from github:
@@ -27,14 +27,14 @@ Now 'cd' into the directory you just cloned:
 cd celleos2
 ```
 
-Start the build process by typing (lb build must be run as root. I recommend running that command, and only that command, as root):
+Start the build process by typing (lb build must be run as root.):
 ```
 lb config
 lb build
 ```
 This step may take some time - perhaps 10 - 30 minutes. This is because a lot of data packages will be downloaded and processed. If all goes well, a file named 'live-image-amd64.hybrid.iso' will be created.
 
-The final step will be to write the file 'live-image-amd64.hybrid.iso' to a USB stick. I prefer to use the command 'dd' for this. Before we can write the image, we need to know the device file for the USB stick. One way to find the correct device file is by typing 'dmesg' in the terminal just after plugging the USB stick into the computer. To write the image to the stick, assuming the stick is /dev/sdb, type:
+The final step will be to write the file 'live-image-amd64.hybrid.iso' to a USB stick. I prefer to use the command 'dd' for this. Before we can write the image, we need to know the device file for the USB stick. One way to find the correct device file is by typing 'dmesg' in the terminal just after plugging the USB stick into the computer. To write the image to the stick, assuming the stick is /dev/sdb, type (as root):
 ```
 dd if=live-image-amd64.hybrid.iso of=/dev/sdb bs=4M
 ```
@@ -46,7 +46,7 @@ and remove the USB stick.
 
 ### Testing the image with Qemu
 
-To test the image with Qemu, first install Qemu:
+To test the image with Qemu, first install Qemu (as root):
 ```
 apt update
 apt install qemu-kvm qemu-utils
