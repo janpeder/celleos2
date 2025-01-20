@@ -17,6 +17,8 @@ config/bootstrap
 config/chroot
 config/common
 config/source
+config/includes.binary/celleos2_brukermanual.pdf
+config/includes.binary/celleos_build_date
 
 live-image-amd64.contents
 live-image-amd64.files
@@ -28,3 +30,10 @@ config/hooks/live/0010-disable-kexec-tools.hook.chroot
 config/hooks/live/0050-disable-sysvinit-tmpfs.hook.chroot
 config/hooks/normal/
 config/package-lists/live.list.chroot
+
+brukermanual/celleos2_brukermanual.dvi
+brukermanual/celleos2_brukermanual.log
+brukermanual/celleos2_brukermanual.pdf
+brukermanual/celleos2_brukermanual.ps*
+
+config/includes.chroot_after_packages/root/celleos_build_date
