@@ -1,0 +1,419 @@
+\input texdraw
+\input epsf
+
+\special{papersize=210mm,297.6mm} % A4 paper
+
+\font\ftitteltop=cmcsc10 at 50pt
+\font\ftittelbottom=cmcsc10 at 15pt
+\font\ftopptekst=cmcsc10 at 6pt
+\font\ftopptekststor=cmr10 at 7.8pt
+\font\fforfatter=cmr10 at 6pt
+\font\fs=cmbx10 scaled\magstep2
+\font\fss=cmcsc10 scaled\magstep2
+\font\fc=cmr8
+
+\def\imagewithcaption#1#2#3{
+\centerline{
+\vbox{\hbox{\epsfxsize #1 \epsffile{#2}}
+\vskip 2pt
+\hbox{\raise 4pt \vbox{\hsize=#1 \noindent \fc \baselineskip=9pt #3}}}}}
+
+%\headline={\ftopptekststor C\kern+0.1pt{\ftopptekst ELLEOS } --- O\kern+0.1pt{\ftopptekst PERATIVSYSTEM FOR PC P\AA{} CELLA \hfill Jan Peder David-Andersen, januar 2023}}
+\headline={\ftopptekst CelleOS: Operativsystem for PC p\aa{} cella \hfill \fforfatter Jan Peder David-Andersen, juli 2023}
+
+\topglue 6pc
+\centerline{\ftitteltop CelleOS}
+\vskip 12pt
+\centerline{\ftittelbottom Operativsystem for PC p\aa{} cella}
+\vskip 8pc
+
+\noindent Skrevet av: Jan Peder David-Andersen ({\tt peder.david-andersen@tromsfylke.no})
+
+\noindent Sist endret: 4. juli 2023
+
+\vskip 3pc
+\def\tocwidth{38pc}
+
+\beginsection{\fss Innhold}
+
+\hbox to \tocwidth{1. Beskrivelse av l\o sningen \dotfill 2}
+\smallskip
+\hbox to \tocwidth{1.1. Bakgrunn om CelleOS og DFS \dotfill 2}
+\hbox to \tocwidth{1.2. Funksjonalitet \dotfill 2}
+\hbox to \tocwidth{1.3. Teknisk beskrivelse \dotfill 2}
+\hbox to \tocwidth{1.4. Vurdering av sikkerheten \dotfill 2}
+\medskip
+\hbox to \tocwidth{2. Installasjonsveiledning \dotfill 4}
+\smallskip
+\hbox to \tocwidth{2.1. Klargj\o re minnepenn for installasjon \dotfill 4}
+\hbox to \tocwidth{2.2. Bakgrunn om UEFI og BIOS \dotfill 6}
+\hbox to \tocwidth{2.3. Klargj\o ring av datamaskin f\o r installasjon \dotfill 6}
+\hbox to \tocwidth{2.4. Installasjon \dotfill 7}
+\medskip
+\hbox to \tocwidth{3. Sikring av datamaskin etter installasjon \dotfill 8}
+\smallskip
+\hbox to \tocwidth{3.1 Sikring av datamaskinens oppsett \dotfill 8}
+\hbox to \tocwidth{3.2 Sikring av datamaskinens kabinett \dotfill 8}
+\hbox to \tocwidth{3.3 Oversikt over utleverte maskiner \dotfill 8}
+\medskip
+\hbox to \tocwidth{4. Administrasjon og bruk av CelleOS \dotfill 9}
+\smallskip
+\hbox to \tocwidth{4.1 Nullstille elevbruker i CelleOS \dotfill 9}
+\hbox to \tocwidth{4.2 Root-tilgang i Terminal \dotfill 10}
+\hbox to \tocwidth{4.3 Midlertidig godkjenne en USB-enhet \dotfill 11}
+\hbox to \tocwidth{4.4 Permanent godkjenne en USB-enhet \dotfill 12}
+\hbox to \tocwidth{4.5 Midlertidig deaktivere brannmur \dotfill 13}
+
+
+
+\vfill\eject
+
+\topglue 1pc
+\beginsection{\fs 1. Beskrivelse av l\o sningen}
+
+CelleOS er et operativsystem utviklet for \aa{} kunne brukes av innsatte i norske fengsler, uten tilsyn. Det er utviklet med fokus p\aa{} sikkerhet og utdanning.
+
+
+\beginsection{\fss 1.1. Bakgrunn om CelleOS og DFS}
+
+I skoleavdelingene i norske fengsler i dag benyttes datasystemet {\it Desktop for Skolen} (DFS). Dette er et funksjonelt og sikkert system som gj\o r det mulig for elever i fengsler \aa{} gj\o re skolearbeid p\aa{} datamaskin i skoletiden. DFS gir en begrenset internettilgang, samtidig som det oppfyller n\o dvendige krav til sikkerhet.
+
+Elever som \o nsker \aa{} bruke datamaskin til skolearbeid p\aa{} kveldstid har i utgangspunktet ikke mulighet til dette i norske fengsler. Enkelte fengsler har bestemt lokalt at skoleavdelingene f\aa r lov til \aa{} dele ut datamaskiner til utvalgte elever. Elevene har disse maskinene p\aa{} sin celle og de brukes uten tilsyn. Av sikkerhetshensyn er det derfor viktig at det ikke er mulig \aa{} kommunisere ved hjelp av disse maskinene.
+
+CelleOS er et operativsystem som er utviklet for datamaskiner som elevene har p\aa{} cella. Form\aa let med CelleOS er at det skal v\ae re lett og raskt \aa{} installere, at det skal v\ae re sikkert og at det skal inneholde den viktigste programvaren som elever har bruk for i en skolesituasjon. CelleOS gir ingen mulighet for internettforbindelse eller annen kommunikasjon, da dette ikke lar seg gj\o re av sikkerhetshensyn.
+
+\beginsection{\fss 1.2. Funksjonalitet}
+
+CelleOS installeres av skolens systemansvarlige ved hjelp av en minnepenn. Selve installasjonsprosessen er automatisert s\aa{} langt det lar seg gj\o re. Etter installasjonen m\aa{} skolens systemansvarlige sikre maskinen. Dette m\aa{} gj\o res manuelt da det involverer noen fysiske steg, samt noen innstillinger i datamaskinens oppsett, som ikke kan automatiseres. N\aa r systemet er installert og maskinen er sikret er den klar til utlevering til elev.
+
+CelleOS inneholder mye nyttig skolerelatert programvare slik som program for tekstbehandling, presentasjon, regneark, bildebehandling, {\it GeoGebra}, programmering i {\it Python}, {\it SketchUp} og mye annet.
+
+Systemet gj\o r det umulig \aa{} koble maskinen til Internett eller annet nettverk. USB-tilkoblinger blir ogs\aa{} sperret slik at det eneste som g\aa r an \aa{} koble til er tastatur, mus og skjerm. Det er mulig \aa{} sette det opp slik at godkjente minnepenner kan kobles til systemet. Godkjenning av minnepenner baserer seg p\aa{} {\it VID/PID} som er samme prinsippet som DFS bruker.
+
+CelleOS er laget for \aa{} fungere p\aa{} noks\aa{} gamle datamaskiner. Ettersom PC p\aa{} celle ikke er en rettighet elevene har, settes det vanligvis ikke av mye penger til dette i skolens budsjett. Derfor er det fint \aa{} ha muligheten til \aa{} bruke eldre datautstyr til dette. Man kan spare b\aa de penger og milj\o et ved \aa{} gjenbruke datautstyr som ellers ville blitt kastet.
+
+\beginsection{\fss 1.3. Teknisk beskrivelse}
+
+CelleOS er basert p\aa{} {\it Debian GNU/Linux}. Automatiseringen av installasjonen av CelleOS er gjort ved hjelp av verkt\o yet {\it live-build}, som er en del av Debian-prosjektet. Sperring av USB-enheter gj\o res med programvaren {\it USBGuard} og sperring av nettverksforbindelser gj\o res med brannmuren {\it iptables}. Mer detaljer om CelleOS-prosjektet kan finnes p\aa{} prosjektet sin {\it github}-side:
+\smallskip
+\noindent {\tt https://github.com/janpeder/celleos-livebuild}
+
+\beginsection{\fss 1.4. Vurdering av sikkerheten}
+
+Trusselbildet forbundet med datamaskin p\aa{} celle g\aa r i hovedsak ut p\aa{} at en elev benytter en slik datamaskin til \aa{} kommunisere med andre. Verste tenkelige situasjon er at en domfelt benytter en datamaskin utlevert av skolen til \aa{} kontakte forn\ae rmede i sak eller planlegge ny kriminalitet.
+Tabellen p\aa{} neste side beskriver ulike hendelser som kan utgj\o re en sikkerhetstrussel, og hvordan CelleOS beskytter mot disse. De fleste av hendelsene som er beskrevet forutsetter at det har blitt smuglet inn en liten maskinvare-enhet som muliggj\o r kommunikasjon. Dette kan for eksempel v\ae re et {\it modem} som muliggj\o r internettforbindelse over mobilnettet. Slike enheter kan kobles til datamaskinens USB-kontakt, nettverkskontakt eller tilkobles ved hjelp av {\it BlueTooth}. Se tabellen p\aa{} neste side.
+
+\vfill\eject
+\topglue 1pc
+
+\def\firstcolwidth{12pc}
+\def\secondcolwidth{19pc}
+\def\tablerow#1#2{
+\vbox{
+\btexdraw
+\drawdim pc
+\textref h:L v:T
+\move(0 0) \htext{\vbox{\hsize=\firstcolwidth \noindent\raggedright #1}}
+\move(16 0) \htext{\vbox{\hsize=\secondcolwidth \noindent\raggedright #2}}
+\etexdraw
+}}
+\def\tablehline{
+\vbox{
+\btexdraw
+\drawdim pc
+\move(0 0) \linewd 0.01 \lvec(35 0)
+\etexdraw}
+}
+
+\def\tabletopline{
+\vbox{
+\btexdraw
+\drawdim pc
+\move(0 0) \linewd 0.07 \lvec(35 0)
+\move(0 0.1) \linewd 0.02 \lvec(35 0.1)
+\etexdraw}
+}
+\def\tablebottomline{
+\vbox{
+\btexdraw
+\drawdim pc
+\move(0 0) \linewd 0.07 \lvec(35 0)
+\move(0 -0.1) \linewd 0.02 \lvec(35 -0.1)
+\etexdraw}
+}
+
+\tablerow{\it Sikkerhetstrussel}{\it Beskyttelse mot trussel i CelleOS}
+\smallskip
+\tabletopline
+\tablerow{Elev benytter tr\aa dl\o st nettverk innebygd i datamaskin til \aa{} kommunisere med andre.}{En viktig forutsetning for \aa{} ivareta sikkerhet er at tr\aa dl\o se nettverkskort m\aa{} v\ae re fysisk fjernet fra datamaskinen f\o r den gis til elev.}
+\vskip 2.55pc
+\tablehline
+\tablerow{Elev kobler USB-enhet til datamaskinen som gir internett\-forbindelse (for eksempel et {\it 4G-modem\/}).}{Programvare {\it (USBGuard)} blokk\-erer alle USB-enheter unntatt tastatur, mus og lagrings\-enheter med godkjent {\it produkt-ID (VID/PID)}. (Godkjenning av USB-lagringsenheter basert p\aa{} VID/PID benyttes ogs\aa{} i DFS.) I tillegg til dette er all kommunikasjon over IPv4 og IPv6 blokkert ved hjelp av brannmur {\it (iptables)}.}
+\vskip 6.5pc
+\tablehline
+\tablerow{Elev kobler en liten {\it WiFi-ruter} til nettverkskontakt p\aa{} datamaskin og kommuniserer med andre.}{All kommunikasjon over IPv4 og IPv6 er blokkert ved hjelp av brannmur {\it (iptables)}.}
+\vskip 3.5pc
+\tablehline
+\tablerow{Elev kobler ekstern nett\-verks\-enhet til datamaskinen over {\it BlueTooth} og bruker dette til \aa{} kommunisere med andre.}{All kommunikasjon over IPv4 og IPv6 er blokkert ved hjelp av brannmur {\it (iptables)}.}
+\vskip 3.5pc
+\tablehline
+\tablerow{Elev \aa pner datamaskinen og monterer ny maskinvare som muliggj\o r kommunikasjon.}{Kabinett p\aa{} datamaskin forsegles med forseglings\-teip eller tilsvarende, slik at det vil vises i ettertid om maskinen har blitt \aa pnet av elev.}
+\vskip 2.5pc
+\tablehline
+\tablerow{Elev installerer nytt operativsystem p\aa{} datamaskinen og f\aa r p\aa{} denne m\aa ten {\it administrator-rettigheter}. Deretter tilkobles for eksempel et eksternt tr\aa dl\o st nettverkskort til USB-kontakten for \aa{} muliggj\o re kommunikasjon.}{{\it BIOS/UEFI} innstillinger p\aa{} datam\-askinen m\aa{} endres slik at det ikke er mulig \aa{} laste inn operativ\-system fra nett\-verk, USB, CDROM eller andre eksterne medier. Det er viktig at skolen har gode rutiner for kontroll av dette f\o r data\-maskinen leveres ut til elev.}
+\vskip 6.5pc
+\tablehline
+\tablerow{Elev \aa pner datamaskinen og monterer ny harddisk med nytt operativsystem og f\aa r p\aa{} denne m\aa ten {\it administrator-rettigheter}. Se hendelsen over for hvordan administrator-rettigheter kan utnyttes.}{Kabinett p\aa{} datamaskin forsegles med forseglings\-teip eller tilsvarende, slik at det vil vises i ettertid om maskinen har blitt \aa pnet av elev.}
+\vskip 6.8pc
+\tablebottomline
+
+\vfill\eject
+
+\topglue 1pc
+\beginsection{\fs 2. Installasjonsveiledning}
+
+CelleOS installeres ved at man f\o rst laster ned en {\it avbildingsfil} og skriver denne til en minnepenn. Deretter installerer man CelleOS ved hjelp av minnepennen. Her f\o lger en detaljert beskrivelse av hvordan dette gj\o res.
+
+\beginsection{\fss 2.1. Klargj\o re minnepenn for installasjon}
+
+For \aa{} lage installasjonsminnepennen trenger du en minnepenn med minimum 4GB kapasitet og en datamaskin med internettforbindelse. Alt p\aa{} minnepennen vil bli overskrevet, s\aa{} s\o rg for \aa{} ta kopi av alt du vil ta vare p\aa{} f\o r du begynner. Se instruksjon nedenfor.
+\item{1.} Bes\o k f\o lgende nettadresse og last ned en {\it avbildingsfil} for CelleOS. Dersom det finnes flere versjoner velger du den som har den nyeste datoen i filnavnet.
+\vskip 1pt
+{\tt https://www.mediafire.com/folder/y0ff1nlbepsa8/celleos}
+\vskip 1pt
+\item{2.} Avbildingsfilen er stor og nedlastingen kan derfor ta en stund. N\aa r den er ferdig skal du laste ned og installere programmet {\it Rufus}. Rufus finner du p\aa{} nettadressen under. 
+\vskip 1pt
+{\tt https://rufus.ie/}
+\vskip 1.5pc
+\imagewithcaption{5.5cm}{bilder/rufus-nedlastning.eps}{For \aa{} finne lenken du skal trykke p\aa{} m\aa{} du rulle nedover p\aa{} nettsiden.}
+\vskip 1.5pc
+\item{3.} Koble minnepennen du vil bruke til PCens USB-kontakt. {\it (Husk at alt p\aa{} minnepennen vil bli overskrevet.)}
+
+\vfill\eject
+\item{4.} \AA pne Rufus, som du nettopp lastet ned. Programmet Rufus er vist p\aa{} bildet under.
+
+\vskip 1.5pc
+\item{}\hbox{\epsfxsize 6.5cm\epsffile{bilder/rufus.eps}}\hskip 4pt \hbox{\raise 15.5pc \vbox{\hsize=4.5cm \noindent \raggedright \fc \baselineskip=9pt Program\-met Rufus. Trykk p\aa{} (1) for \aa{} velge minne\-pennen du vil bruke. Trykk p\aa{} (2) og velg avbildings\-filen du lastet ned. Trykk p\aa{} (3) for \aa{} skrive avbildings\-filen til minne\-pennen.}}
+\vskip 1.5pc
+\item{5.} I vinduet velger du hvilken USB-enhet du vil skrive avbildings\-filen til. S\aa{} velger du at avbildings\-filen du lastet ned er den som skal skrives til minnepennen. Til slutt trykker du p\aa{} ``Start''.
+
+\item{6.} N\aa{} kommer det opp en dialogboks som sp\o r om hvordan bildet skal skrives. Her skal du velge ``Skriv i DD-bilde - modus''. Se bildet under.
+\vskip 1.5pc
+\imagewithcaption{7cm}{bilder/dd-modus.eps}{Her skal du velge ``Skriv i DD-bilde - modus''.}
+\vskip 1.5pc
+\item{7.} Til slutt blir du spurt om du er sikker. Svar ``Ok'' p\aa{} dette. Det tar en stund \aa{} skrive avbildingsfilen til minnepennen. N\aa r den er ferdig er installasjons\-minnepennen klar.
+
+\beginsection{\fss 2.2. Bakgrunn om UEFI og BIOS}
+
+Datamaskiner er laget slik at n\aa r de sl\aa s p\aa{} startes den programvaren som ligger lagret p\aa{} begynnelsen av maskinens harddisk. Det er slik maskinen finner og starter operativsystemet. Du skal n\aa{} endre innstillingene i datamaskinen slik at den i stedet starter programvaren p\aa{} minnepennen. Men f\o r vi g\aa r inn p\aa{} hvordan dette gj\o res m\aa{} det forklares litt mer i detalj om hvordan dette virker.
+
+For at programvare skal fungere p\aa{} datamaskiner fra ulike produsenter m\aa{} produsentene bli enige om  \aa{} gj\o re enkelte ting p\aa{} samme m\aa te. Slik enighet oppn\aa s gjennom at det skrives {\it standardiseringsdokumenter}. M\aa ten datamaskinen leter etter programvare n\aa r maskinen skrus p\aa{} er standardisert slik. Hvis dette ikke var standardisert ville vi i verste fall m\aa ttet lage ulike installasjonsminnepenner for de ulike merkene --- en for Lenovo, en annen for Dell og  en tredje for HP osv. Men takket v\ae re standarden virker en minnepenn p\aa{} alle.
+
+Men riktig s\aa{} heldige er vi likevel ikke. For p\aa{} begynnelsen av 2000-tallet ble det klart at standarden som definerte hvordan maskinen skal starte opp var gammel og utdatert og at det var behov for en ny standard. Vi har i dag derfor to ulike standarder. Den nye heter {\it Unified Extensible Firmware Interface} (UEFI). Den gamle kalles vanligvis {\it BIOS}. 
+
+CelleOS bruker BIOS som oppstartsmetode. Dette er for at det skal fungere med gamle datamaskiner som ble laget f\o r UEFI ble vanlig. 
+
+\beginsection{\fss 2.3. Klargj\o ring av datamaskin f\o r installasjon}
+
+For at installasjonsprogrammet p\aa{} minnepennen skal startes n\aa r maskinen skrus p\aa , m\aa{} vi endre innstillingene p\aa{} datamaskinen. Den m\aa{} stilles inn p\aa{} \aa{} starte fra USB og oppstartmodus m\aa{} v\ae re {\it BIOS/Legacy/CSM (ikke UEFI)}. Fremgangsm\aa ten er ulik p\aa{} ulike datamaskiner. Her beskrives det som er felles for de ulike produsentene: 
+\item{1.} Hvis datamaskinen er p\aa, skru den av.
+\item{2.} Du skal n\aa{} starte opp datamaskinen og holde inne en bestemt tast. Hvilken tast du skal holde inne varierer avhengig av produsent. Det kommer vanligvis opp p\aa{} skjermen rett etter at datamaskinen startes, for eksempel kan det st\aa{} ``Press F2 to enter Setup''. De vanligste tastene er enten {\it F1}, {\it F2}, {\it F10}, {\it Enter} eller {\it DEL}.
+\item{3.} N\aa r du har gjort dette kommer du til menyen for datamaskinens innstillinger. 
+\medskip
+\imagewithcaption{8cm}{bilder/maskinoppsett.eps}{Eksempel p\aa{} hvordan menyen for datamaskinens opp\-sett kan se ut. Feltet nederst p\aa{} skjermen viser hvordan man bruker tastaturet for \aa{} navigere i menyen.}
+\item{} I menyen finnes det et menyvalg for ``boot order'' eller tilsvarende. Dette vises gjerne som en prioritert liste. Hver gang datamaskinen skrus p\aa{} leser den lista ovenifra og ned og starter opp den f\o rste programvaren den finner. Du m\aa{} derfor endre rekkef\o lgen slik at USB-enheter er f\o rst er f\o rst i lista.
+\item{4.} S\o rg for at oppstartsmodus BIOS er valgt. De ulike produsentene bruker ulike navn for dette. Noen kaller det {\it BIOS}, noen kaller det {\it Legacy} og noen kaller det {\it Compatibility Support Module (CSM)}.
+\smallskip
+\noindent N\aa r du har utf\o rt alle stegene i lista over vil installasjonsprogrammet for CelleOS startes automatisk n\aa r minnepennen st\aa r i PCen og maskinen skrus p\aa.
+
+
+\beginsection{\fss 2.4. Installasjon}
+
+For \aa{} installere trenger du installasjons\-minnepennen som du lagde i delkapittel 2.1. For at installasjonen skal starte m\aa{} maskinen v\ae re konfigurert for oppstart fra USB, som du gjorde i delkapittel 2.3. Mesteparten av installasjonen foreg\aa r automatisk. Det eneste man blir spurt om underveis er \aa{} bestemme et {\it root-passord}. Her f\o lger en detaljert instruksjon.
+\item{1.} N\aa r du setter installasjonsminnepennen i datamaskinen og skrur p\aa{} vil du se en advarsel. Hvis du ikke f\aa r opp denne advarselen n\aa r du skrur p\aa{} maskinen er det mulig du har gjort noe galt da du konfigurerte oppstart fra USB (i delkapittel 2.3).
+\vskip 1pc
+\imagewithcaption{8cm}{bilder/celleos-installdialog.eps}{Skjermbilde med advarsel om at alle data p\aa{} datamaskinen vil bli slettet dersom du installerer CelleOS.}
+\vskip 1pc
+\item{2.} Trykk {\it Enter} hvis du er sikker p\aa{} at du vil slette alt p\aa{} maskinen og installere CelleOS.
+\item{3.} Etter omtrent et halvt minutt vil du bli bedt om \aa{} opprette et {\it root-passord}:
+\vskip 1pc
+\imagewithcaption{8cm}{bilder/root-dialog.eps}{Skjermbilde hvor man blir bedt om \aa{} opprette root-passord.}
+\vskip 1pc
+\item{} En {\it root-bruker} er det samme som en {\it administrator-bruker}. En person som kjenner passordet til root-brukeren har alle tilganger p\aa{} datamaskinen. Det er derfor viktig at du lager et sikkert root-passord, og at du tar godt vare p\aa{} dette passordet og passer p\aa{} at uvedkommende ikke f\aa r kjennskap til det. Skriv inn passordet to ganger og trykk ``Fortsett''.
+\item{4.} Installasjonen tar omtrent 10 minutter. N\aa r den er ferdig tar du ut installasjonsminnepennen, slik at installasjonen ikke startes en gang til n\aa r maskinen omstartes.
+
+\vfill\eject
+\topglue 1pc
+\beginsection{\fs 3. Sikring av datamaskin etter installasjon}
+
+CelleOS inneholder programvare som forhindrer sikkerhetsbrudd i forbindelse datamaskin p\aa{} fengselscelle. Men det er ikke alle sikkerhetstrusler man kan beskytte seg mot ved hjelp av programvare. Dersom en elev kan installere nytt operativsystem p\aa{} maskinen eller kan \aa pne maskinen (og for eksempel bytte ut harddisken), har sikkerhetsfunksjonaliteten i CelleOS ikke lenger noen virkning (se vurdering av sikkerheten i delkapittel 1.4). Det er derfor kritisk at IKT driftsansvarlig ved skolen har gode rutiner for \aa{} sikre at slike hendelser ikke skjer. Her forklares hvordan man beskytter mot dette.
+
+\beginsection{\fss 3.1 Sikring av datamaskinens oppsett}
+
+Etter at CelleOS er installert m\aa{} datamaskinen sikres for at elev ikke skal kunne installere nytt operativsystem p\aa{} datamaskinen. Dette gj\o res i datamaskinens innstillinger, og fremgangsm\aa ten ligner p\aa{} det du gjorde i delkapittel~2.3. 
+\item{1.} Start datamaskinen p\aa{} nytt og hold inne den tasten som gj\o r at man kommer til menyen med datamaskinens innstillinger (som beskrevet i 2.3).
+\item{2.} N\aa{} skal du sikre at maskinen ikke laster inn programvare fra minnepenner eller andre eksterne enheter ved oppstart. Menyvalget for dette kalles vanligvis ``boot order'', men ulike produsenter kan bruke ulike navn for dette. Dersom det er mulig \aa{} {\it deaktivere} innlasting av programvare fra USB, CDROM og andre eksterne enheter er dette det beste. Hvis ikke dette er mulig m\aa{} du s\o rge for at de eksterne enhetene kommer etter harddisken i rekkef\o lgen. 
+\item{3.} For at ingen skal kunne endre p\aa{} innstillingene m\aa{} du beskytte dem med et passord. I menyen kalles dette vanligvis for et {\it admin-passord} (det er fort gjort \aa{} forveksle admin-passord med {\it Power-On Password (POP)}, men sistnevnte m\aa{} skrives inn for \aa{} kunne skru p\aa{} maskinen, og er upraktisk). Bruk et sikkert passord og s\o rg for at ingen uvedkommende f\aa r tak i det.
+\item{4.} Kontroll\'er en ekstra gang at oppstartsrekkef\o lgen du har angitt stemmer og at den ikke tillater oppstart fra noen andre enheter enn maskinens interne harddisk.
+\item{5.} Start maskinen p\aa{} nytt og kontroll\'er at det ikke er mulig \aa{} endre maskinens innstillinger uten \aa{} skrive inn admin-passordet.
+
+\beginsection{\fss 3.2 Sikring av datamaskinens kabinett}
+
+For at elev ikke skal kunne endre p\aa{} maskinvaren m\aa{} kabinettet sikres. En m\aa te \aa{} gj\o re dette p\aa{} er ved \aa{} forsegle kabinettet slik at det vil vises i ettertid hvis det har blitt \aa pnet. Det anbefales \aa{} avklare med fengslet hva slags utstyr som skal benyttes til dette. I noen fengsler benyttes en bestemt type forseglingsteip, men denne praksisen kan variere fra fengsel til fengsel.
+
+\beginsection{\fss 3.3 Oversikt over utleverte maskiner}
+
+Skolens IKT-ansvarlige b\o r s\o rge for \aa{} ha en oversikt over maskinene som skolen leverer ut til elever. Dette kan gj\o res p\aa{} ulike m\aa ter, for eksempel ved \aa{} skrive det i et regneark i Excel. Nyttig informasjon \aa{} registrere kan v\ae re
+
+\smallskip
+\item{$\circ$} serienummer p\aa{} maskin
+\item{$\circ$} type maskin
+\item{$\circ$} navn p\aa{} elev som har mottatt maskinen
+\item{$\circ$} hva root-passordet i operativsystemet er (delkapittel 2.4)
+\item{$\circ$} hva admin-passordet til maskinen er (delkapittel 3.1)
+\item{$\circ$} dato for siste kontroll av maskinoppsett (delkapittel 3.1)
+
+\smallskip
+Ved \aa{} oppbevare denne informasjonen p\aa{} et sikkert sted vet man hvor man finner den n\aa r man trenger den, samtidig som man unng\aa r at den kommer p\aa{} avveie.
+
+\vfill\eject
+
+\topglue 1pc
+
+\beginsection{\fs 4. Administrasjon og bruk av CelleOS}
+
+Her forklares hvordan man kan utf\o re diverse nyttige administrative oppgaver p\aa{} elevdatamaskiner som har CelleOS. Alle handlingene som beskrives her krever at du har {\it root-passordet}, som du lagde da du installerte CelleOS (delkapittel 2.4).
+
+\beginsection{\fss 4.1 Nullstille elevbruker i CelleOS}
+
+N\aa r en elev leverer inn en datamaskin kan denne raskt nullstilles slik at den kan gis ut til en ny elev. Her er fremgangsm\aa ten for dette.
+\item{1.} Hvis datamaskinen er av, skru den p\aa . Hvis en bruker er logget p\aa , logg av. Du kommer da til inn\-loggings\-skjerm\-bildet:
+
+\medskip
+
+\imagewithcaption{6cm}{bilder/login.eps}{Innloggingsskjermbildet.}
+\smallskip
+\item{2.} Trykk {\it Ctrl+Alt+F3.} Du f\aa r n\aa{} opp en svart skjerm hvor det st\aa r
+
+\medskip
+{\tt celleos login:}
+\medskip
+
+\item{} Her skriver du inn brukernavnet ``{\tt root}'' og trykker {\it Enter}. Du blir n\aa{} bedt om passord. Her skal du skrive inn root-passordet.
+
+\item{3.} Det du ser p\aa{} skjermen n\aa{} kalles et {\it kommando\-linje-grense\-snitt}. I et kommando\-linje-grense\-snitt skriver brukeren (i dette tilfellet, du) inn tekstlige kommandoer til datamaskinen om hva den skal gj\o re. Etter hver kommando trykker man {\it Enter}. Du skal n\aa{} skrive
+\medskip
+{\tt resett\_elevbruker}
+\medskip
+\item{4.} N\aa r du  blir spurt om du er sikker, taster du stor ``J'' for \aa{} bekrefte.
+
+\item{5.} N\aa r programmet er ferdig skriver du ``{\tt exit}'' for \aa{} logge ut root-brukeren. Dette er viktig for \aa{} forhindre at noen kan g\aa{} rundt sikkerheten i CelleOS.
+
+\item{6.} Trykk {\it Ctrl+Alt+F1} for \aa{} g\aa{} tilbake til inn\-loggings\-skjerm\-bildet. Elev\-brukeren er n\aa{} nullstilt.
+
+\beginsection{\fss 4.2 Root-tilgang i Terminal}
+
+Det finnes to m\aa ter \aa{} f\aa{} tilgang til kommando\-linjen p\aa . Den ene m\aa ten er \aa{} trykke {\it Ctrl+Alt+F3}, slik det ble forklart i delkapittel 4.1. Den andre m\aa ten er \aa{} \aa pne et {\it terminalvindu}. Fordelen med \aa{} bruke et terminalvindu er at det kan gj\o res uten \aa{} g\aa{} ut av det grafiske brukergrensesnittet hvor elevbrukeren er innlogget (da vi i delkapittel 4.1 nullstilte elevbrukeren, kunne elevbrukeren ikke v\ae re p\aa logget samtidig som den ble nullstilt, og vi kunne derfor ikke bruke terminalvinduet). For \aa{} f\aa{} root-tilgang i et terminalvindu, gj\o r f\o lgende:
+\item{1.} Logg p\aa{} elevbrukeren hvis den ikke allerede er p\aa logget.
+\item{2.} Trykk p\aa{} knappen {\it ``Vis Programmer''} som er helt til h\o yre p\aa{} programlinjen i bunnen av skjermen (knappen ser ut som ni hvite prikker i et kvadratisk m\o nster).
+
+\medskip
+\centerline{\baselineskip=9pt \vbox{\hbox{\epsfxsize 5cm \epsffile{bilder/skrivebord-celleos.eps} \epsfxsize 3cm \epsffile{bilder/vis-programmer.eps}}\vskip 1pt \hbox{\vbox{\hsize=8cm \noindent \fc \baselineskip=9pt Trykk p\aa{} symbolet helt til h\o yre p\aa{} programlinjen for \aa{} vise alle programmer.}}}}
+\medskip
+
+\item{3.} N\aa{} f\aa r du se sm\aa{} bilder av programmer som du kan velge mellom. Her kan du bla med rullehjulet p\aa{} musa til du finner programmet ``Terminal'' eller du bruke s\o kefunksjonen. N\aa r du har startet programmet kommer det opp et vindu hvor det st\aa r:
+\medskip
+{\tt elev@celleos:\~{}\$}
+\medskip
+\item{} Dette betyr at du n\aa{} er logget inn som brukeren ``elev'' p\aa{} en datamaskin som heter ``celleos''.
+\item{4.} Du skal n\aa{} bytte bruker til ``root'', slik at du f\aa r alle tilganger. For \aa{} bytte bruker til root, skriv:
+\medskip
+{\tt su}
+\medskip
+\item{5.} N\aa{} blir du bedt om \aa{} skrive inn root-passordet. N\aa r du har gjort det vil det st\aa{} p\aa{} skjermen:
+\medskip
+{\tt root@celleos:/home/elev\#}
+\medskip
+\item{} Dette betyr at du n\aa{} er logget inn som root, og at du befinner deg i mappen som heter ``/home/elev''.
+
+\beginsection{\fss 4.3 Midlertidig godkjenne en USB-enhet}
+
+CelleOS blokkerer tilkobling for alle USB-enheter unntatt tastatur, mus og minnepenner med godkjent {\it Vendor~ID/Product~ID (VID/PID)}. Hvis du har behov for \aa{} koble til en minnepenn som ikke er godkjent er dette likevel mulig, forutsatt at du kjenner root-passordet. Minnepennen vil da fungere helt til den kobles fra. Hvis samme minnepenn senere skal kobles til igjen m\aa{} denne prosessen gjentas. For permanent godkjenning av USB-enheter, se delkapittel 4.4.
+\item{1.} Sett minnepennen i datamaskinen.
+\item{2.} \AA pne en kommandolinje og logg inn som ``root'' (se delkapittel 4.2 for forklaring p\aa{} hvordan dette gj\o res).
+\item{3.} Skriv f\o lgende i kommandolinja:
+\medskip
+{\tt usbguard list-devices}
+\medskip
+\item{} Det kommer n\aa{} opp ganske mye tekst p\aa{} skjermen. Teksten utgj\o r en tabell hvor hver rad gir informasjon om en USB-enhet tilkoblet maskinen. Informasjonen er listet opp i rekkef\o lge slik at enheten som ble koblet til sist st\aa r nederst. Under er et eksempel p\aa{} hvordan dette kan se ut.
+
+\medskip
+\centerline{\epsfxsize 8cm \epsffile{bilder/usbguard-list-devices.eps}}
+\medskip
+
+\item{} P\aa{} raden i den r\o de firkanten i eksemplet st\aa r det:
+\smallskip
+{\tt 11: block id 0951:1643 serial \"{}001CC0EC3471F090D60013C5\"{} name \"{}DataTraveler G3\"{}{} [\dots]}
+\medskip
+\item{4. } Tallet {\tt 11} er programvaren {\it USBGuard} sitt kjennetegn for denne enheten (USBGuard er navnet p\aa{} programvaren som blokkerer USB-enheter i CelleOS). Vi ser at minnepennen har navnet ``DataTraveler G3''. Hvis det ser ut til at enhet nummer 11 er den du \o nsker \aa{} koble til maskinen, skriver du:
+\medskip
+{\tt usbguard allow-device 11}
+\medskip
+\item{5.} Minnepennen blir n\aa{} koblet til. Du vil n\aa{} finne minnepennen i filutforskeren. Husk \aa{} logge deg ut av root-brukeren slik at ikke uvedkommende f\aa r tilgang til den. Du logger deg ut ved \aa{} skrive kommandoen
+\medskip
+{\tt exit}
+\medskip
+
+\beginsection{\fss 4.4 Permanent godkjenne en USB-enhet}
+
+Midlertidig godkjenning av USB-enheter er nyttig i enkelte tilfeller, men for daglig bruk er det upraktisk. I tillegg utgj\o r det en sikkerhetsrisiko at man m\aa{} bruke root-passordet ofte, fordi det \o ker sannsynligheten for at uvedkommende f\aa r tak i det. En bedre l\o sning er \aa{} konfigurere permanent godkjenning av en minnepenn.
+
+Nedenfor beskrives stegvis hvordan man permanent kan godkjenne en minnepenn p\aa{} en bestemt datamaskin. Hvis man i stedet \o nsker at en minnepenn skal v\ae re godkjent p\aa{} {\it alle} maskiner man installerer CelleOS p\aa{} er dette ogs\aa{} mulig. Det er faktisk slik det er tenkt at CelleOS skal brukes, da godkjenning av enheter p\aa{} hver enkelt maskin kan bli b\aa de uoversiktlig og strevsomt.
+
+Det er da mulig \aa{} f\aa{} laget en skreddersydd {\it avbildingsfil} for installasjon, som inneholder ferdig oppsett med godkjenning av den/de aktuelle minnepennen(e). Hvis du \o nsker dette kan du f\o lge stegene 1--4 i instruksjonen nedenfor, slik at du finner ut {\it Vendor~ID/Product~ID (VID/PID)\/} for enheten(e) du vil godkjenne. Deretter sender du en epost til undertegnede (epost-adresse finner du p\aa{} f\o rste side i dette dokumentet) og ber om \aa{} f\aa{} laget en skreddersydd avbildingsfil. Eposten m\aa{} inneholde VID/PID for enhetene(e) du \o nsker at skal v\ae re godkjent. 
+
+Under f\o lger instruksjonen for hvordan du kan godkjenne en minnepenn permanent p\aa{} \'en datamaskin. Hvis du kun er interessert i \aa{} finne ut hva som er VID/PID for en USB-enhet stopper du etter steg 4.
+
+\item{1.} Sett minnepennen i datamaskinen.
+\item{2.} \AA pne en kommandolinje og logg inn som ``root'' (se delkapittel 4.2 for forklaring p\aa{} hvordan dette gj\o res).
+\item{3.} Skriv f\o lgende i kommandolinja:
+\medskip
+{\tt usbguard list-devices}
+\medskip
+\item{} Siste linje av informasjonen om tilkoblede USB-enheter kan for eksempel se slik ut:
+\medskip
+{\tt 11: block id 0951:1643 serial \"{}001CC0EC3471F090D60013C5\"{} name \"{}DataTraveler G3\"{} [\dots]}
+\medskip
+\item{4.} Tallene ``{\tt 0951:1643}'' fra eksemplet over er enhetens {\it VID/PID}. Finn VID/PID for enheten du \o nsker \aa{} godkjenne og skriv tallene ned p\aa{} en lapp (VID/PID er alltid to firesifrede tall med kolon mellom).
+\item{5.} Skriv f\o lgende i kommandolinjen:
+\medskip
+{\tt sudo nano /etc/usbguard/rules.conf}
+\medskip
+\item{6.} Du redigerer n\aa{} en fil som inneholder innstillingene til programmet {\it USBGuard}. Du skal endre p\aa{} den nederste linjen i filen slik at VID/PID for enheten du vil godkjenne st\aa r i lista over godkjente enheter. Hvis enheten du \o nsker \aa{} godkjenne for eksempel har VID/PID 0951:1643 skal nederste linje v\ae re:
+\medskip
+{\tt allow id one-of $\{$ 0951:1643 $\}$ with-interface equals $\{$ 08:*:* $\}$ }
+\medskip
+\item{} Det g\aa r ogs\aa{} an \aa{} ha flere godkjente minnepenner. Nederste linje vil da inneholder flere ulike par med VID/PID, separert med mellomrom. Et slikt oppsett kan for eksempel se slik ut:
+\medskip
+{\tt allow id one-of $\{$ 0951:1643 0951:1284 0246:0573 $\}$ with-interface equals $\{$ 08:*:* $\}$ }
+\medskip
+\item{7.} N\aa r du er ferdig \aa{} endre konfigurasjonen trykker du {\it Ctrl+X}. N\aa r du blir spurt om \aa{} lagre, trykk ``J''. N\aa r blir du spurt om filnavn, trykk {\it Enter}.
+
+\item{8.} Start maskinen p\aa{} nytt. USB-enheter med godkjent VID/PID skal n\aa{} fungere p\aa{} denne maskinen.
+
+\vfill\eject
+
+\beginsection{\fss 4.5 Midlertidig deaktivere brannmur}
+
+Dersom det skulle v\ae re behov for det g\aa r det an \aa{} deaktivere brannmuren i CelleOS midlertidig. Dette kan for eksempel v\ae re nyttig hvis man trenger \aa{} installere programvare som m\aa{} lastes ned fra Internett. Brannmuren vil bli aktivert igjen etter at maskinen startes p\aa{} nytt. 
+\item{1.} \AA pne en kommandolinje og logg inn som ``root'' (se delkapittel 4.2 for forklaring p\aa{} hvordan dette gj\o res).
+\item{2.} Skriv inn f\o lgende kommando (bare mulig for {\it root}-brukeren):
+\medskip
+{\tt apne\_internett}
+\medskip
+\item{} Til slutt logger du ut ved \aa{} skrive
+\medskip
+\indent{\tt exit}
+\medskip
+\item{} Brannmuren er n\aa{} midlertidig deaktivert og vil aktiveres igjen n\aa r maskina startes p\aa{} nytt.
+\vfill\eject\bye
