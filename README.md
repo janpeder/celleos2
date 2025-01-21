@@ -1,4 +1,4 @@
-# celleos2
+# CelleOS 2
 
 Variant of Debian Linux for use in prison cells by prisoners without supervision. Focus is on security and education.
 
