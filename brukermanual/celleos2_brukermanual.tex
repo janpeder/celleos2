@@ -18,18 +18,17 @@
 \vskip 2pt
 \hbox{\raise 4pt \vbox{\hsize=#1 \noindent \fc \baselineskip=9pt #3}}}}}
 
-%\headline={\ftopptekststor C\kern+0.1pt{\ftopptekst ELLEOS } --- O\kern+0.1pt{\ftopptekst PERATIVSYSTEM FOR PC P\AA{} CELLA \hfill Jan Peder David-Andersen, januar 2023}}
 \headline={\ftopptekst CelleOS: Operativsystem for PC p\aa{} cella \hfill \fforfatter Jan Peder David-Andersen, juli 2023}
 
 \topglue 6pc
-\centerline{\ftitteltop CelleOS}
+\centerline{\ftitteltop CelleOS 2}
 \vskip 12pt
 \centerline{\ftittelbottom Operativsystem for PC p\aa{} cella}
 \vskip 8pc
 
 \noindent Skrevet av: Jan Peder David-Andersen ({\tt peder.david-andersen@tromsfylke.no})
 
-\noindent Sist endret: 4. juli 2023
+\noindent Sist endret: 21.01.2025
 
 \vskip 3pc
 \def\tocwidth{38pc}
@@ -45,10 +44,10 @@
 \medskip
 \hbox to \tocwidth{2. Installasjonsveiledning \dotfill 4}
 \smallskip
-\hbox to \tocwidth{2.1. Klargj\o re minnepenn for installasjon \dotfill 4}
-\hbox to \tocwidth{2.2. Bakgrunn om UEFI og BIOS \dotfill 6}
-\hbox to \tocwidth{2.3. Klargj\o ring av datamaskin f\o r installasjon \dotfill 6}
-\hbox to \tocwidth{2.4. Installasjon \dotfill 7}
+\hbox to \tocwidth{2.1. Klargj\o re minnepinne for installasjon \dotfill 4}
+%\hbox to \tocwidth{2.X. Bakgrunn om UEFI og BIOS \dotfill 6}
+\hbox to \tocwidth{2.2. Klargj\o ring av datamaskin f\o r installasjon \dotfill 6}
+\hbox to \tocwidth{2.3. Installasjon \dotfill 7}
 \medskip
 \hbox to \tocwidth{3. Sikring av datamaskin etter installasjon \dotfill 8}
 \smallskip
@@ -71,8 +70,7 @@
 \topglue 1pc
 \beginsection{\fs 1. Beskrivelse av l\o sningen}
 
-CelleOS er et operativsystem utviklet for \aa{} kunne brukes av innsatte i norske fengsler, uten tilsyn. Det er utviklet med fokus p\aa{} sikkerhet og utdanning.
-
+CelleOS er et operativsystem utviklet for \aa{} kunne brukes av innsatte i norske fengsler, uten tilsyn. Det er utviklet med fokus p\aa{} sikkerhet og utdanning. I versjon 2 har noen forbedringer i forhold til første versjon, blant annet brukes Debian 12 i stedet for Debian 11. CelleOS  2 fungerer nå også med UEFI oppstartsmodus, slik at man ikke trenger å tenke på dette ved installasjon.
 
 \beginsection{\fss 1.1. Bakgrunn om CelleOS og DFS}
 
@@ -84,11 +82,11 @@ CelleOS er et operativsystem som er utviklet for datamaskiner som elevene har p\
 
 \beginsection{\fss 1.2. Funksjonalitet}
 
-CelleOS installeres av skolens systemansvarlige ved hjelp av en minnepenn. Selve installasjonsprosessen er automatisert s\aa{} langt det lar seg gj\o re. Etter installasjonen m\aa{} skolens systemansvarlige sikre maskinen. Dette m\aa{} gj\o res manuelt da det involverer noen fysiske steg, samt noen innstillinger i datamaskinens oppsett, som ikke kan automatiseres. N\aa r systemet er installert og maskinen er sikret er den klar til utlevering til elev.
+CelleOS installeres av skolens systemansvarlige ved hjelp av en minnepinn. Selve installasjonsprosessen er automatisert s\aa{} langt det lar seg gj\o re. Etter installasjonen m\aa{} skolens systemansvarlige sikre maskinen. Dette m\aa{} gj\o res manuelt da det involverer noen fysiske steg, samt noen innstillinger i datamaskinens oppsett, som ikke kan automatiseres. N\aa r systemet er installert og maskinen er sikret er den klar til utlevering til elev.
 
 CelleOS inneholder mye nyttig skolerelatert programvare slik som program for tekstbehandling, presentasjon, regneark, bildebehandling, {\it GeoGebra}, programmering i {\it Python}, {\it SketchUp} og mye annet.
 
-Systemet gj\o r det umulig \aa{} koble maskinen til Internett eller annet nettverk. USB-tilkoblinger blir ogs\aa{} sperret slik at det eneste som g\aa r an \aa{} koble til er tastatur, mus og skjerm. Det er mulig \aa{} sette det opp slik at godkjente minnepenner kan kobles til systemet. Godkjenning av minnepenner baserer seg p\aa{} {\it VID/PID} som er samme prinsippet som DFS bruker.
+Systemet gj\o r det umulig \aa{} koble maskinen til Internett eller annet nettverk. USB-tilkoblinger blir ogs\aa{} sperret slik at det eneste som g\aa r an \aa{} koble til er tastatur, mus og skjerm. Det er mulig \aa{} sette det opp slik at godkjente minnepinner kan kobles til systemet. Godkjenning av minnepinner baserer seg p\aa{} {\it VID/PID} som er samme prinsippet som DFS bruker.
 
 CelleOS er laget for \aa{} fungere p\aa{} noks\aa{} gamle datamaskiner. Ettersom PC p\aa{} celle ikke er en rettighet elevene har, settes det vanligvis ikke av mye penger til dette i skolens budsjett. Derfor er det fint \aa{} ha muligheten til \aa{} bruke eldre datautstyr til dette. Man kan spare b\aa de penger og milj\o et ved \aa{} gjenbruke datautstyr som ellers ville blitt kastet.
 
@@ -96,11 +94,11 @@ CelleOS er laget for \aa{} fungere p\aa{} noks\aa{} gamle datamaskiner. Ettersom
 
 CelleOS er basert p\aa{} {\it Debian GNU/Linux}. Automatiseringen av installasjonen av CelleOS er gjort ved hjelp av verkt\o yet {\it live-build}, som er en del av Debian-prosjektet. Sperring av USB-enheter gj\o res med programvaren {\it USBGuard} og sperring av nettverksforbindelser gj\o res med brannmuren {\it iptables}. Mer detaljer om CelleOS-prosjektet kan finnes p\aa{} prosjektet sin {\it github}-side:
 \smallskip
-\noindent {\tt https://github.com/janpeder/celleos-livebuild}
+\noindent {\tt https://github.com/janpeder/celleos2}
 
 \beginsection{\fss 1.4. Vurdering av sikkerheten}
 
-Trusselbildet forbundet med datamaskin p\aa{} celle g\aa r i hovedsak ut p\aa{} at en elev benytter en slik datamaskin til \aa{} kommunisere med andre. Verste tenkelige situasjon er at en domfelt benytter en datamaskin utlevert av skolen til \aa{} kontakte forn\ae rmede i sak eller planlegge ny kriminalitet.
+Trusselbildet forbundet med datamaskin p\aa{} celle g\aa r i hovedsak ut p\aa{} at en elev benytter en slik datamaskin til \aa{} kommunisere med andre. Verste tenkelige situasjon er at en innsatt benytter en datamaskin utlevert av skolen til \aa{} kontakte forn\ae rmede i sak eller planlegge ny kriminalitet.
 Tabellen p\aa{} neste side beskriver ulike hendelser som kan utgj\o re en sikkerhetstrussel, og hvordan CelleOS beskytter mot disse. De fleste av hendelsene som er beskrevet forutsetter at det har blitt smuglet inn en liten maskinvare-enhet som muliggj\o r kommunikasjon. Dette kan for eksempel v\ae re et {\it modem} som muliggj\o r internettforbindelse over mobilnettet. Slike enheter kan kobles til datamaskinens USB-kontakt, nettverkskontakt eller tilkobles ved hjelp av {\it BlueTooth}. Se tabellen p\aa{} neste side.
 
 \vfill\eject
@@ -172,11 +170,11 @@ Tabellen p\aa{} neste side beskriver ulike hendelser som kan utgj\o re en sikker
 \topglue 1pc
 \beginsection{\fs 2. Installasjonsveiledning}
 
-CelleOS installeres ved at man f\o rst laster ned en {\it avbildingsfil} og skriver denne til en minnepenn. Deretter installerer man CelleOS ved hjelp av minnepennen. Her f\o lger en detaljert beskrivelse av hvordan dette gj\o res.
+CelleOS installeres ved at man f\o rst laster ned en {\it avbildingsfil} og skriver denne til en minnepinn. Deretter installerer man CelleOS ved hjelp av minnepinnen. Her f\o lger en detaljert beskrivelse av hvordan dette gj\o res.
 
-\beginsection{\fss 2.1. Klargj\o re minnepenn for installasjon}
+\beginsection{\fss 2.1. Klargj\o re minnepinne for installasjon}
 
-For \aa{} lage installasjonsminnepennen trenger du en minnepenn med minimum 4GB kapasitet og en datamaskin med internettforbindelse. Alt p\aa{} minnepennen vil bli overskrevet, s\aa{} s\o rg for \aa{} ta kopi av alt du vil ta vare p\aa{} f\o r du begynner. Se instruksjon nedenfor.
+For \aa{} lage installasjonsminnepinnen trenger du en minnepinne med minimum 8GB kapasitet og en datamaskin med internettforbindelse. Alt p\aa{} minnepinnen vil bli overskrevet, s\aa{} s\o rg for \aa{} ta kopi av alt du vil ta vare p\aa{} f\o r du begynner. Se instruksjon nedenfor.
 \item{1.} Bes\o k f\o lgende nettadresse og last ned en {\it avbildingsfil} for CelleOS. Dersom det finnes flere versjoner velger du den som har den nyeste datoen i filnavnet.
 \vskip 1pt
 {\tt https://www.mediafire.com/folder/y0ff1nlbepsa8/celleos}
@@ -187,7 +185,7 @@ For \aa{} lage installasjonsminnepennen trenger du en minnepenn med minimum 4GB 
 \vskip 1.5pc
 \imagewithcaption{5.5cm}{bilder/rufus-nedlastning.eps}{For \aa{} finne lenken du skal trykke p\aa{} m\aa{} du rulle nedover p\aa{} nettsiden.}
 \vskip 1.5pc
-\item{3.} Koble minnepennen du vil bruke til PCens USB-kontakt. {\it (Husk at alt p\aa{} minnepennen vil bli overskrevet.)}
+\item{3.} Koble minnepinnen du vil bruke til PCens USB-kontakt. {\it (Husk at alt p\aa{} minnepinnen vil bli overskrevet.)}
 
 \vfill\eject
 \item{4.} \AA pne Rufus, som du nettopp lastet ned. Programmet Rufus er vist p\aa{} bildet under.
@@ -195,42 +193,43 @@ For \aa{} lage installasjonsminnepennen trenger du en minnepenn med minimum 4GB 
 \vskip 1.5pc
 \item{}\hbox{\epsfxsize 6.5cm\epsffile{bilder/rufus.eps}}\hskip 4pt \hbox{\raise 15.5pc \vbox{\hsize=4.5cm \noindent \raggedright \fc \baselineskip=9pt Program\-met Rufus. Trykk p\aa{} (1) for \aa{} velge minne\-pennen du vil bruke. Trykk p\aa{} (2) og velg avbildings\-filen du lastet ned. Trykk p\aa{} (3) for \aa{} skrive avbildings\-filen til minne\-pennen.}}
 \vskip 1.5pc
-\item{5.} I vinduet velger du hvilken USB-enhet du vil skrive avbildings\-filen til. S\aa{} velger du at avbildings\-filen du lastet ned er den som skal skrives til minnepennen. Til slutt trykker du p\aa{} ``Start''.
+\item{5.} I vinduet velger du hvilken USB-enhet du vil skrive avbildings\-filen til. S\aa{} velger du at avbildings\-filen du lastet ned er den som skal skrives til minnepinnen. Til slutt trykker du p\aa{} ``Start''.
 
 \item{6.} N\aa{} kommer det opp en dialogboks som sp\o r om hvordan bildet skal skrives. Her skal du velge ``Skriv i DD-bilde - modus''. Se bildet under.
 \vskip 1.5pc
 \imagewithcaption{7cm}{bilder/dd-modus.eps}{Her skal du velge ``Skriv i DD-bilde - modus''.}
 \vskip 1.5pc
-\item{7.} Til slutt blir du spurt om du er sikker. Svar ``Ok'' p\aa{} dette. Det tar en stund \aa{} skrive avbildingsfilen til minnepennen. N\aa r den er ferdig er installasjons\-minnepennen klar.
+\item{7.} Til slutt blir du spurt om du er sikker. Svar ``Ok'' p\aa{} dette. Det tar en stund \aa{} skrive avbildingsfilen til minnepinnen. N\aa r den er ferdig er installasjons\-minnepinnen klar.
 
-\beginsection{\fss 2.2. Bakgrunn om UEFI og BIOS}
+%\beginsection{\fss 2.X. Bakgrunn om UEFI og BIOS}
 
-Datamaskiner er laget slik at n\aa r de sl\aa s p\aa{} startes den programvaren som ligger lagret p\aa{} begynnelsen av maskinens harddisk. Det er slik maskinen finner og starter operativsystemet. Du skal n\aa{} endre innstillingene i datamaskinen slik at den i stedet starter programvaren p\aa{} minnepennen. Men f\o r vi g\aa r inn p\aa{} hvordan dette gj\o res m\aa{} det forklares litt mer i detalj om hvordan dette virker.
+%Datamaskiner er laget slik at n\aa r de sl\aa s p\aa{} startes den programvaren som ligger lagret p\aa{} begynnelsen av maskinens harddisk. Det er slik maskinen finner og starter operativsystemet. Du skal n\aa{} endre innstillingene i datamaskinen slik at den i stedet starter programvaren p\aa{} minnepinnen. Men f\o r vi g\aa r inn p\aa{} hvordan dette gj\o res m\aa{} det forklares litt mer i detalj om hvordan dette virker.
 
-For at programvare skal fungere p\aa{} datamaskiner fra ulike produsenter m\aa{} produsentene bli enige om  \aa{} gj\o re enkelte ting p\aa{} samme m\aa te. Slik enighet oppn\aa s gjennom at det skrives {\it standardiseringsdokumenter}. M\aa ten datamaskinen leter etter programvare n\aa r maskinen skrus p\aa{} er standardisert slik. Hvis dette ikke var standardisert ville vi i verste fall m\aa ttet lage ulike installasjonsminnepenner for de ulike merkene --- en for Lenovo, en annen for Dell og  en tredje for HP osv. Men takket v\ae re standarden virker en minnepenn p\aa{} alle.
+%For at programvare skal fungere p\aa{} datamaskiner fra ulike produsenter m\aa{} produsentene bli enige om  \aa{} gj\o re enkelte ting p\aa{} samme m\aa te. Slik enighet oppn\aa s gjennom at det skrives {\it standardiseringsdokumenter}. M\aa ten datamaskinen leter etter programvare n\aa r maskinen skrus p\aa{} er standardisert slik. Hvis dette ikke var standardisert ville vi i verste fall m\aa ttet lage ulike installasjonsminnepinner for de ulike merkene --- en for Lenovo, en annen for Dell og  en tredje for HP osv. Men takket v\ae re standarden virker en minnepinne p\aa{} alle.
 
-Men riktig s\aa{} heldige er vi likevel ikke. For p\aa{} begynnelsen av 2000-tallet ble det klart at standarden som definerte hvordan maskinen skal starte opp var gammel og utdatert og at det var behov for en ny standard. Vi har i dag derfor to ulike standarder. Den nye heter {\it Unified Extensible Firmware Interface} (UEFI). Den gamle kalles vanligvis {\it BIOS}. 
+%Men riktig s\aa{} heldige er vi likevel ikke. For p\aa{} begynnelsen av 2000-tallet ble det klart at standarden som definerte hvordan maskinen skal starte opp var gammel og utdatert og at det var behov for en ny standard. Vi har i dag derfor to ulike standarder. Den nye heter {\it Unified Extensible Firmware Interface} (UEFI). Den gamle kalles vanligvis {\it BIOS}. 
 
-CelleOS bruker BIOS som oppstartsmetode. Dette er for at det skal fungere med gamle datamaskiner som ble laget f\o r UEFI ble vanlig. 
+%CelleOS bruker BIOS som oppstartsmetode. Dette er for at det skal fungere med gamle datamaskiner som ble laget f\o r UEFI ble vanlig. 
 
-\beginsection{\fss 2.3. Klargj\o ring av datamaskin f\o r installasjon}
+\beginsection{\fss 2.2. Klargj\o ring av datamaskin f\o r installasjon}
 
-For at installasjonsprogrammet p\aa{} minnepennen skal startes n\aa r maskinen skrus p\aa , m\aa{} vi endre innstillingene p\aa{} datamaskinen. Den m\aa{} stilles inn p\aa{} \aa{} starte fra USB og oppstartmodus m\aa{} v\ae re {\it BIOS/Legacy/CSM (ikke UEFI)}. Fremgangsm\aa ten er ulik p\aa{} ulike datamaskiner. Her beskrives det som er felles for de ulike produsentene: 
+Nytt i CelleOS versjon 2 er at installasjonsprogrammet håndterer oppstart med både UEFI og BIOS oppstart. Man trenger derfor ikke tenke dette når man skal installere CelleOS 2. Men, som alltid når vi isntallerer et nytt operativsystem på en PC,må vi sørge for at datamaskinen starter installasjonsprogrammet fra minnepinnen.
+
+For at installasjonsprogrammet p\aa{} minnepinnen skal startes n\aa r maskinen skrus p\aa , m\aa{} vi endre innstillingene p\aa{} datamaskinen. Den m\aa{} stilles inn p\aa{} \aa{} starte fra USB. Fremgangsm\aa ten er ulik p\aa{} ulike datamaskiner. Her beskrives det som er felles for de ulike produsentene: 
 \item{1.} Hvis datamaskinen er p\aa, skru den av.
 \item{2.} Du skal n\aa{} starte opp datamaskinen og holde inne en bestemt tast. Hvilken tast du skal holde inne varierer avhengig av produsent. Det kommer vanligvis opp p\aa{} skjermen rett etter at datamaskinen startes, for eksempel kan det st\aa{} ``Press F2 to enter Setup''. De vanligste tastene er enten {\it F1}, {\it F2}, {\it F10}, {\it Enter} eller {\it DEL}.
 \item{3.} N\aa r du har gjort dette kommer du til menyen for datamaskinens innstillinger. 
 \medskip
 \imagewithcaption{8cm}{bilder/maskinoppsett.eps}{Eksempel p\aa{} hvordan menyen for datamaskinens opp\-sett kan se ut. Feltet nederst p\aa{} skjermen viser hvordan man bruker tastaturet for \aa{} navigere i menyen.}
 \item{} I menyen finnes det et menyvalg for ``boot order'' eller tilsvarende. Dette vises gjerne som en prioritert liste. Hver gang datamaskinen skrus p\aa{} leser den lista ovenifra og ned og starter opp den f\o rste programvaren den finner. Du m\aa{} derfor endre rekkef\o lgen slik at USB-enheter er f\o rst er f\o rst i lista.
-\item{4.} S\o rg for at oppstartsmodus BIOS er valgt. De ulike produsentene bruker ulike navn for dette. Noen kaller det {\it BIOS}, noen kaller det {\it Legacy} og noen kaller det {\it Compatibility Support Module (CSM)}.
 \smallskip
-\noindent N\aa r du har utf\o rt alle stegene i lista over vil installasjonsprogrammet for CelleOS startes automatisk n\aa r minnepennen st\aa r i PCen og maskinen skrus p\aa.
+\noindent N\aa r du har utf\o rt alle stegene i lista over vil installasjonsprogrammet for CelleOS startes automatisk n\aa r minnepinnen st\aa r i PCen og maskinen skrus p\aa.
 
 
-\beginsection{\fss 2.4. Installasjon}
+\beginsection{\fss 2.3. Installasjon}
 
-For \aa{} installere trenger du installasjons\-minnepennen som du lagde i delkapittel 2.1. For at installasjonen skal starte m\aa{} maskinen v\ae re konfigurert for oppstart fra USB, som du gjorde i delkapittel 2.3. Mesteparten av installasjonen foreg\aa r automatisk. Det eneste man blir spurt om underveis er \aa{} bestemme et {\it root-passord}. Her f\o lger en detaljert instruksjon.
-\item{1.} N\aa r du setter installasjonsminnepennen i datamaskinen og skrur p\aa{} vil du se en advarsel. Hvis du ikke f\aa r opp denne advarselen n\aa r du skrur p\aa{} maskinen er det mulig du har gjort noe galt da du konfigurerte oppstart fra USB (i delkapittel 2.3).
+For \aa{} installere trenger du installasjons\-minnepinnen som du lagde i delkapittel 2.1. For at installasjonen skal starte m\aa{} maskinen v\ae re konfigurert for oppstart fra USB, som du gjorde i delkapittel 2.2. Mesteparten av installasjonen foreg\aa r automatisk. Det eneste man blir spurt om underveis er \aa{} bestemme et {\it root-passord}. Her f\o lger en detaljert instruksjon.
+\item{1.} N\aa r du setter installasjonsminnepinnen i datamaskinen og skrur p\aa{} vil du se en advarsel. Hvis du ikke f\aa r opp denne advarselen n\aa r du skrur p\aa{} maskinen er det mulig du har gjort noe galt da du konfigurerte oppstart fra USB (i delkapittel 2.2).
 \vskip 1pc
 \imagewithcaption{8cm}{bilder/celleos-installdialog.eps}{Skjermbilde med advarsel om at alle data p\aa{} datamaskinen vil bli slettet dersom du installerer CelleOS.}
 \vskip 1pc
@@ -240,7 +239,7 @@ For \aa{} installere trenger du installasjons\-minnepennen som du lagde i delkap
 \imagewithcaption{8cm}{bilder/root-dialog.eps}{Skjermbilde hvor man blir bedt om \aa{} opprette root-passord.}
 \vskip 1pc
 \item{} En {\it root-bruker} er det samme som en {\it administrator-bruker}. En person som kjenner passordet til root-brukeren har alle tilganger p\aa{} datamaskinen. Det er derfor viktig at du lager et sikkert root-passord, og at du tar godt vare p\aa{} dette passordet og passer p\aa{} at uvedkommende ikke f\aa r kjennskap til det. Skriv inn passordet to ganger og trykk ``Fortsett''.
-\item{4.} Installasjonen tar omtrent 10 minutter. N\aa r den er ferdig tar du ut installasjonsminnepennen, slik at installasjonen ikke startes en gang til n\aa r maskinen omstartes.
+\item{4.} Installasjonen tar omtrent 10 minutter. N\aa r den er ferdig tar du ut installasjonsminnepinnen, slik at installasjonen ikke startes en gang til n\aa r maskinen omstartes.
 
 \vfill\eject
 \topglue 1pc
@@ -252,7 +251,7 @@ CelleOS inneholder programvare som forhindrer sikkerhetsbrudd i forbindelse data
 
 Etter at CelleOS er installert m\aa{} datamaskinen sikres for at elev ikke skal kunne installere nytt operativsystem p\aa{} datamaskinen. Dette gj\o res i datamaskinens innstillinger, og fremgangsm\aa ten ligner p\aa{} det du gjorde i delkapittel~2.3. 
 \item{1.} Start datamaskinen p\aa{} nytt og hold inne den tasten som gj\o r at man kommer til menyen med datamaskinens innstillinger (som beskrevet i 2.3).
-\item{2.} N\aa{} skal du sikre at maskinen ikke laster inn programvare fra minnepenner eller andre eksterne enheter ved oppstart. Menyvalget for dette kalles vanligvis ``boot order'', men ulike produsenter kan bruke ulike navn for dette. Dersom det er mulig \aa{} {\it deaktivere} innlasting av programvare fra USB, CDROM og andre eksterne enheter er dette det beste. Hvis ikke dette er mulig m\aa{} du s\o rge for at de eksterne enhetene kommer etter harddisken i rekkef\o lgen. 
+\item{2.} N\aa{} skal du sikre at maskinen ikke laster inn programvare fra minnepinner eller andre eksterne enheter ved oppstart. Menyvalget for dette kalles vanligvis ``boot order'', men ulike produsenter kan bruke ulike navn for dette. Dersom det er mulig \aa{} {\it deaktivere} innlasting av programvare fra USB, CDROM og andre eksterne enheter er dette det beste. Hvis ikke dette er mulig m\aa{} du s\o rge for at de eksterne enhetene kommer etter harddisken i rekkef\o lgen. 
 \item{3.} For at ingen skal kunne endre p\aa{} innstillingene m\aa{} du beskytte dem med et passord. I menyen kalles dette vanligvis for et {\it admin-passord} (det er fort gjort \aa{} forveksle admin-passord med {\it Power-On Password (POP)}, men sistnevnte m\aa{} skrives inn for \aa{} kunne skru p\aa{} maskinen, og er upraktisk). Bruk et sikkert passord og s\o rg for at ingen uvedkommende f\aa r tak i det.
 \item{4.} Kontroll\'er en ekstra gang at oppstartsrekkef\o lgen du har angitt stemmer og at den ikke tillater oppstart fra noen andre enheter enn maskinens interne harddisk.
 \item{5.} Start maskinen p\aa{} nytt og kontroll\'er at det ikke er mulig \aa{} endre maskinens innstillinger uten \aa{} skrive inn admin-passordet.
@@ -338,8 +337,8 @@ Det finnes to m\aa ter \aa{} f\aa{} tilgang til kommando\-linjen p\aa . Den ene 
 
 \beginsection{\fss 4.3 Midlertidig godkjenne en USB-enhet}
 
-CelleOS blokkerer tilkobling for alle USB-enheter unntatt tastatur, mus og minnepenner med godkjent {\it Vendor~ID/Product~ID (VID/PID)}. Hvis du har behov for \aa{} koble til en minnepenn som ikke er godkjent er dette likevel mulig, forutsatt at du kjenner root-passordet. Minnepennen vil da fungere helt til den kobles fra. Hvis samme minnepenn senere skal kobles til igjen m\aa{} denne prosessen gjentas. For permanent godkjenning av USB-enheter, se delkapittel 4.4.
-\item{1.} Sett minnepennen i datamaskinen.
+CelleOS blokkerer tilkobling for alle USB-enheter unntatt tastatur, mus og minnepinner med godkjent {\it Vendor~ID/Product~ID (VID/PID)}. Hvis du har behov for \aa{} koble til en minnepinne som ikke er godkjent er dette likevel mulig, forutsatt at du kjenner root-passordet. Minnepinnen vil da fungere helt til den kobles fra. Hvis samme minnepinne senere skal kobles til igjen m\aa{} denne prosessen gjentas. For permanent godkjenning av USB-enheter, se delkapittel 4.4.
+\item{1.} Sett minnepinnen i datamaskinen.
 \item{2.} \AA pne en kommandolinje og logg inn som ``root'' (se delkapittel 4.2 for forklaring p\aa{} hvordan dette gj\o res).
 \item{3.} Skriv f\o lgende i kommandolinja:
 \medskip
@@ -355,26 +354,26 @@ CelleOS blokkerer tilkobling for alle USB-enheter unntatt tastatur, mus og minne
 \smallskip
 {\tt 11: block id 0951:1643 serial \"{}001CC0EC3471F090D60013C5\"{} name \"{}DataTraveler G3\"{}{} [\dots]}
 \medskip
-\item{4. } Tallet {\tt 11} er programvaren {\it USBGuard} sitt kjennetegn for denne enheten (USBGuard er navnet p\aa{} programvaren som blokkerer USB-enheter i CelleOS). Vi ser at minnepennen har navnet ``DataTraveler G3''. Hvis det ser ut til at enhet nummer 11 er den du \o nsker \aa{} koble til maskinen, skriver du:
+\item{4. } Tallet {\tt 11} er programvaren {\it USBGuard} sitt kjennetegn for denne enheten (USBGuard er navnet p\aa{} programvaren som blokkerer USB-enheter i CelleOS). Vi ser at minnepinnen har navnet ``DataTraveler G3''. Hvis det ser ut til at enhet nummer 11 er den du \o nsker \aa{} koble til maskinen, skriver du:
 \medskip
 {\tt usbguard allow-device 11}
 \medskip
-\item{5.} Minnepennen blir n\aa{} koblet til. Du vil n\aa{} finne minnepennen i filutforskeren. Husk \aa{} logge deg ut av root-brukeren slik at ikke uvedkommende f\aa r tilgang til den. Du logger deg ut ved \aa{} skrive kommandoen
+\item{5.} Minnepinnen blir n\aa{} koblet til. Du vil n\aa{} finne minnepinnen i filutforskeren. Husk \aa{} logge deg ut av root-brukeren slik at ikke uvedkommende f\aa r tilgang til den. Du logger deg ut ved \aa{} skrive kommandoen
 \medskip
 {\tt exit}
 \medskip
 
 \beginsection{\fss 4.4 Permanent godkjenne en USB-enhet}
 
-Midlertidig godkjenning av USB-enheter er nyttig i enkelte tilfeller, men for daglig bruk er det upraktisk. I tillegg utgj\o r det en sikkerhetsrisiko at man m\aa{} bruke root-passordet ofte, fordi det \o ker sannsynligheten for at uvedkommende f\aa r tak i det. En bedre l\o sning er \aa{} konfigurere permanent godkjenning av en minnepenn.
+Midlertidig godkjenning av USB-enheter er nyttig i enkelte tilfeller, men for daglig bruk er det upraktisk. I tillegg utgj\o r det en sikkerhetsrisiko at man m\aa{} bruke root-passordet ofte, fordi det \o ker sannsynligheten for at uvedkommende f\aa r tak i det. En bedre l\o sning er \aa{} konfigurere permanent godkjenning av en minnepinn.
 
-Nedenfor beskrives stegvis hvordan man permanent kan godkjenne en minnepenn p\aa{} en bestemt datamaskin. Hvis man i stedet \o nsker at en minnepenn skal v\ae re godkjent p\aa{} {\it alle} maskiner man installerer CelleOS p\aa{} er dette ogs\aa{} mulig. Det er faktisk slik det er tenkt at CelleOS skal brukes, da godkjenning av enheter p\aa{} hver enkelt maskin kan bli b\aa de uoversiktlig og strevsomt.
+Nedenfor beskrives stegvis hvordan man permanent kan godkjenne en minnepinne p\aa{} en bestemt datamaskin. Hvis man i stedet \o nsker at en minnepinne skal v\ae re godkjent p\aa{} {\it alle} maskiner man installerer CelleOS p\aa{} er dette ogs\aa{} mulig. Det er faktisk slik det er tenkt at CelleOS skal brukes, da godkjenning av enheter p\aa{} hver enkelt maskin kan bli b\aa de uoversiktlig og strevsomt.
 
-Det er da mulig \aa{} f\aa{} laget en skreddersydd {\it avbildingsfil} for installasjon, som inneholder ferdig oppsett med godkjenning av den/de aktuelle minnepennen(e). Hvis du \o nsker dette kan du f\o lge stegene 1--4 i instruksjonen nedenfor, slik at du finner ut {\it Vendor~ID/Product~ID (VID/PID)\/} for enheten(e) du vil godkjenne. Deretter sender du en epost til undertegnede (epost-adresse finner du p\aa{} f\o rste side i dette dokumentet) og ber om \aa{} f\aa{} laget en skreddersydd avbildingsfil. Eposten m\aa{} inneholde VID/PID for enhetene(e) du \o nsker at skal v\ae re godkjent. 
+Det er da mulig \aa{} f\aa{} laget en skreddersydd {\it avbildingsfil} for installasjon, som inneholder ferdig oppsett med godkjenning av den/de aktuelle minnepinnen(e). Hvis du \o nsker dette kan du f\o lge stegene 1--4 i instruksjonen nedenfor, slik at du finner ut {\it Vendor~ID/Product~ID (VID/PID)\/} for enheten(e) du vil godkjenne. Deretter sender du en epost til undertegnede (epost-adresse finner du p\aa{} f\o rste side i dette dokumentet) og ber om \aa{} f\aa{} laget en skreddersydd avbildingsfil. Eposten m\aa{} inneholde VID/PID for enhetene(e) du \o nsker at skal v\ae re godkjent. 
 
-Under f\o lger instruksjonen for hvordan du kan godkjenne en minnepenn permanent p\aa{} \'en datamaskin. Hvis du kun er interessert i \aa{} finne ut hva som er VID/PID for en USB-enhet stopper du etter steg 4.
+Under f\o lger instruksjonen for hvordan du kan godkjenne en minnepinne permanent p\aa{} \'en datamaskin. Hvis du kun er interessert i \aa{} finne ut hva som er VID/PID for en USB-enhet stopper du etter steg 4.
 
-\item{1.} Sett minnepennen i datamaskinen.
+\item{1.} Sett minnepinnen i datamaskinen.
 \item{2.} \AA pne en kommandolinje og logg inn som ``root'' (se delkapittel 4.2 for forklaring p\aa{} hvordan dette gj\o res).
 \item{3.} Skriv f\o lgende i kommandolinja:
 \medskip
@@ -393,7 +392,7 @@ Under f\o lger instruksjonen for hvordan du kan godkjenne en minnepenn permanent
 \medskip
 {\tt allow id one-of $\{$ 0951:1643 $\}$ with-interface equals $\{$ 08:*:* $\}$ }
 \medskip
-\item{} Det g\aa r ogs\aa{} an \aa{} ha flere godkjente minnepenner. Nederste linje vil da inneholder flere ulike par med VID/PID, separert med mellomrom. Et slikt oppsett kan for eksempel se slik ut:
+\item{} Det g\aa r ogs\aa{} an \aa{} ha flere godkjente minnepinner. Nederste linje vil da inneholder flere ulike par med VID/PID, separert med mellomrom. Et slikt oppsett kan for eksempel se slik ut:
 \medskip
 {\tt allow id one-of $\{$ 0951:1643 0951:1284 0246:0573 $\}$ with-interface equals $\{$ 08:*:* $\}$ }
 \medskip
