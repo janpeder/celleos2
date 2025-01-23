@@ -19,6 +19,7 @@ config/common
 config/source
 config/includes.binary/celleos2_brukermanual.pdf
 config/includes.binary/celleos_build_date
+config/packages.chroot/*
 
 live-image-amd64.contents
 live-image-amd64.files
