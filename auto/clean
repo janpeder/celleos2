@@ -2,6 +2,7 @@
 
 set -e
 
+# Run all scripts ending in .sh in the cleanscripts subdirectory
 for f in auto/cleanscripts/*.sh ; do
   bash "$f"
 done

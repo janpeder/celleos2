@@ -2,6 +2,7 @@
 
 set -e  # exit on error
 
+# Run all scripts ending in .sh in the buildscripts subdirectory
 for f in auto/buildscripts/*.sh ; do
   bash "$f"
 done
