@@ -1,2 +1,2 @@
 [org/gnome/shell]
-favorite-apps = ['org.gnome.Nautilus.desktop', 'libreoffice-writer.desktop', 'libreoffice-calc.desktop', 'libreoffice-impress.desktop', 'mu.codewith.editor.desktop', 'org.goldendict.GoldenDict.desktop', 'vlc.desktop', 'org.gnome.Settings.desktop']
+favorite-apps = ['org.gnome.Nautilus.desktop', 'libreoffice-writer.desktop', 'libreoffice-calc.desktop', 'libreoffice-impress.desktop', 'geogebra.desktop', 'mu.codewith.editor.desktop', 'org.goldendict.GoldenDict.desktop', 'vlc.desktop', 'org.gnome.Settings.desktop']
