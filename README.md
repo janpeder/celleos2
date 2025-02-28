@@ -14,7 +14,7 @@ The following steps describes how to build a ISO image for installing celleos. Y
 First, install the required packages (as root):
 ```
 apt update
-apt install live-build git build-essential texlive texlive-plain-generic texlive-pictures
+apt install live-build git build-essential texlive texlive-plain-generic texlive-pictures libgtk-4-dev
 ```
 
 Then, check out this repository from github:
