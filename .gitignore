@@ -40,3 +40,6 @@ brukermanual/celleos2_brukermanual.pdf
 brukermanual/celleos2_brukermanual.ps*
 
 config/includes.chroot_after_packages/root/celleos_build_date
+
+tilkoblingssperre/*.o
+tilkoblingssperre/tilkoblingssperre
