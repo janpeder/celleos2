@@ -14,7 +14,7 @@ clean:
 	rm -f $(TARGETNAME)
 	rm -f $(OBJS)
 
-resources.o: resources.xml
+resources.o: resources.xml resources/tilkoblingssperre.ui
 	glib-compile-resources --generate-source resources.xml
 	gcc -c resources.c $(CFLAGS)
 	rm -f resources.c
