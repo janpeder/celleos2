@@ -13,11 +13,11 @@ int main(int argc, char* argv[]){
   }
   else{
     std::vector<usbguard::Rule> rules = client.listDevices();
-    for(long unsigned int i = 0; i < rules.size(); i++) {
+    for(size_t i = 0; i < rules.size(); i++) {
       bool allow = true;
       const usbguard::Rule::Attribute<usbguard::USBInterfaceType> interface = rules[i].attributeWithInterface();
       // Because the bClass member variable is private, we have to
-      // Parse the string, which is a lot uglier than just 'getting' it:
+      // Parse the string, which is a lot uglier than just 'getting' bClass:
       std::string s = interface.toRuleString();
       if(s.find("{") != std::string::npos){
 	// it's a list of interfaces
@@ -42,7 +42,6 @@ int main(int argc, char* argv[]){
       }
       if(allow) std::cout << "allow " << rules[i].toString().substr(6) << "\n";
     } //end for
-  }// end else (connected)
+  }// end else (connection check)
   return status;
 }
-
