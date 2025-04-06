@@ -4,44 +4,43 @@
 
 int main(int argc, char* argv[]){
   int status = 0;
-  std::string allowed_interfaces = "03 09";
+  usbguard::USBInterfaceType hid(0x03, 0, 0, usbguard::USBInterfaceType::MatchClass);
+  usbguard::USBInterfaceType hub(0x09, 0, 0, usbguard::USBInterfaceType::MatchClass);
+  std::vector<usbguard::USBInterfaceType> allowed_interfaces;
+  allowed_interfaces.push_back(hid);
+  allowed_interfaces.push_back(hub);
   usbguard::IPCClient client;
   client.connect();
   if(!client.isConnected()){
     status = 1;
-    std::cerr << "ERROR: IPC connection to USBGuard failed.";
+    std::cerr << "ERROR: IPC connection to USBGuard failed.\n";
   }
   else{
-    std::vector<usbguard::Rule> rules = client.listDevices();
-    for(size_t i = 0; i < rules.size(); i++) {
-      bool allow = true;
-      const usbguard::Rule::Attribute<usbguard::USBInterfaceType> interface = rules[i].attributeWithInterface();
-      // Because the bClass member variable is private, we have to
-      // Parse the string, which is a lot uglier than just 'getting' bClass:
-      std::string s = interface.toRuleString();
-      if(s.find("{") != std::string::npos){
-	// it's a list of interfaces
-	size_t pos = 17;
-	while(pos+1 < s.size()){
-	  std::string usbclass_str = s.substr(pos, 2);
-	  if(allowed_interfaces.find(usbclass_str) == std::string::npos){
-	    // interface class type not in list of allowed interfaces:
-	    allow = false;
+    std::vector<usbguard::Rule> devices = client.listDevices();
+    for(size_t i = 0; i < devices.size(); i++) {
+      bool allow_device = true;
+      const usbguard::Rule::Attribute<usbguard::USBInterfaceType> interfaces = devices[i].attributeWithInterface();
+      for(size_t j = 0; j < interfaces.count(); j++){
+	bool allow_interface = false;
+	for(size_t k = 0; k < allowed_interfaces.size(); k++){
+	  if(allowed_interfaces[k].appliesTo(interfaces.get(j))){
+	    // Interface is in list of allowed interfaces.
+	    allow_interface = true;
 	  }
-	  pos += 9;
 	}
-	std::cout << "\n";
+	// At least one interface on the device was not in the list of allowed interfaces.
+	if(!allow_interface) allow_device = false;
       }
-      else{
-	// a single interface
-	std::string usbclass_str = s.substr(15, 2);
-	if(allowed_interfaces.find(usbclass_str) == std::string::npos){
-	  // interface class type not in list of allowed interfaces:
-	  allow = false;
-	}
+      if(allow_device){
+	usbguard::Rule allow_rule(devices[i]);
+	allow_rule.setTarget(usbguard::Rule::Target::Allow);
+	// Remove the "via port" attribute, as we don't want that in our rule:
+	allow_rule.attributeViaPort().clear();
+	std::cout << allow_rule.toString() << "\n";
       }
-      if(allow) std::cout << "allow " << rules[i].toString().substr(6) << "\n";
-    } //end for
-  }// end else (connection check)
+    } //end for devices
+    client.disconnect();
+  } // end else (connection check)
+  client.wait();
   return status;
 }
