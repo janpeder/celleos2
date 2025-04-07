@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # Make includes.binary directory in case it doesn't exist
 # Needed by steps below..
 mkdir -p config/includes.binary
