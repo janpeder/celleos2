@@ -1,5 +1,6 @@
 #include <IPCClient.hpp>
 #include <Rule.hpp>
+#include <Exception.hpp>
 #include <iostream>
 
 int main(int argc, char* argv[]){
@@ -10,13 +11,23 @@ int main(int argc, char* argv[]){
   allowed_interfaces.push_back(hid);
   allowed_interfaces.push_back(hub);
   usbguard::IPCClient client;
-  client.connect();
+  try{
+    client.connect();
+  } catch(usbguard::Exception const& e) {
+    std::cerr << "ERROR: Could not connect to usbguard. Context: " << e.context() << ". Object: " << e.object() << ". Reason: " << e.reason() << ".\n";
+  }
+      
   if(!client.isConnected()){
     status = 1;
     std::cerr << "ERROR: IPC connection to USBGuard failed.\n";
   }
   else{
-    std::vector<usbguard::Rule> devices = client.listDevices();
+    std::vector<usbguard::Rule> devices;
+    try{
+      devices = client.listDevices();
+    } catch(usbguard::Exception const& e) {
+      std::cerr << "ERROR: Could not list connected devices. Context: " << e.context() << ". Object: " << e.object() << ". Reason: " << e.reason() << ".\n";
+    }
     for(size_t i = 0; i < devices.size(); i++) {
       bool allow_device = true;
       const usbguard::Rule::Attribute<usbguard::USBInterfaceType> interfaces = devices[i].attributeWithInterface();
