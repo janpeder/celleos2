@@ -1,5 +1,9 @@
 [org/gnome/desktop/background]
-picture-uri='file:///usr/share/backgrounds/gnome/adwaita-l.webp'
+color-shading-type='solid'
+picture-opacity=100
 picture-options='zoom'
-primary-color='#3071AE'
+picture-uri='file:///usr/share/desktop-base/ceratopsian-theme/wallpaper/gnome-background.xml'
+picture-uri-dark='file:///usr/share/desktop-base/ceratopsian-theme/wallpaper/gnome-background.xml'
+primary-color='#ffffff'
 secondary-color='#000000'
+show-desktop-icons=false

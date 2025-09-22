@@ -1,7 +1,7 @@
 #!/bin/sh
 
 lb config noauto \
-   --distribution bookworm \
+   --distribution trixie \
    -a amd64 \
    -b iso-hybrid \
    --iso-application celleos \
