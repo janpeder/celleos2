@@ -1,6 +1,18 @@
 #include <gtk/gtk.h>
 #include <glib/gstdio.h>
 
+char *get_product_name_factory(GtkListItem *item, GtkStringList *sl){
+  // Todo returner noe. Hvordan ordner vi med minne osv? blir det unreffa?
+  return g_strdup(gtk_string_list_get_string(sl, 0)); // bør man duppe stringen?
+  //return g_strdup ();
+}
+
+char *get_serial_factory(GtkListItem *item, GtkStringList *sl){
+  // Todo returner noe. Hvordan ordner vi med minne osv? blir det unreffa?
+  return g_strdup (gtk_string_list_get_string(sl, 1)); // bør man duppe stringen?
+}
+
+
 static void
 print_hello (GtkWidget *widget,
              gpointer   data)
@@ -38,6 +50,17 @@ activate (GtkApplication *app,
 
   gtk_widget_set_visible (GTK_WIDGET (window), TRUE);
 
+  GListStore *liststore1 = G_LIST_STORE(gtk_builder_get_object (builder, "liststore1"));
+  // Får vi nå utfordringer med at liststore1 ikke har satt typen på elementene?
+  GtkStringList *enhet1 = gtk_string_list_new(NULL);
+  gtk_string_list_append(enhet1, "ting1");
+  gtk_string_list_append(enhet1, "45623189");
+  g_list_store_append(liststore1, enhet1);
+  GtkStringList *enhet2 = gtk_string_list_new(NULL);
+  gtk_string_list_append(enhet2, "ting12");
+  gtk_string_list_append(enhet2, "321654");
+  g_list_store_append(liststore1, enhet2);
+  
   /* We do not need the builder any more */
   g_object_unref (builder);
 }

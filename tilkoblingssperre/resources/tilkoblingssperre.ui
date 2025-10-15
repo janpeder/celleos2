@@ -1,38 +1,140 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
+  <requires lib="gtk" version="4.0" />
+  
   <object id="window" class="GtkWindow">
-    <property name="title">Grid</property>
+    <property name="title">Tilkoblingssperre</property>
+    <property name="default-width">600</property>
+    <property name="default-height">400</property>
     <child>
-      <object id="grid" class="GtkGrid">
-        <child>
-          <object id="button1" class="GtkButton">
-            <property name="label">Button 1</property>
-            <layout>
-              <property name="column">0</property>
-              <property name="row">0</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object id="button2" class="GtkButton">
-            <property name="label">Button 2</property>
-            <layout>
-              <property name="column">1</property>
-              <property name="row">0</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object id="quit" class="GtkButton">
-            <property name="label">Quit</property>
-            <layout>
-              <property name="column">0</property>
-              <property name="row">1</property>
-              <property name="column-span">2</property>
-            </layout>
-          </object>
-        </child>
-      </object>
+      <object class="GtkNotebook">
+	
+	<!-- Start USB-fane -->
+	<child>
+	  <object class="GtkScrolledWindow">
+            <property name="hexpand">TRUE</property>
+            <property name="vexpand">TRUE</property>
+            <child>
+              <object class="GtkColumnView" id="columnview">
+		<property name="model">
+		  <object class="GtkNoSelection">
+                    <property name="model">
+                      <object class="GListStore" id="liststore1">
+			<!-- <property name="attributes">standard::name,standard::icon,standard::size,time::modified</property> -->
+                      </object>
+                    </property>
+		  </object>
+		</property>
+		<!-- Start første kolonne: -->
+		<child>
+		  <object class="GtkColumnViewColumn">
+                    <property name="title">Produkt</property>
+                    <property name="expand">TRUE</property>
+                    <property name="factory">
+                      <object class="GtkBuilderListItemFactory">
+			<property name="bytes"><![CDATA[
+			<?xml version="1.0" encoding="UTF-8"?>
+			<interface>
+			<template class="GtkListItem">
+			<property name="child">
+			<object class="GtkLabel">
+			<property name="hexpand">TRUE</property>
+			<property name="xalign">0</property>
+			<binding name="label">
+			<closure type="gchararray" function="get_product_name_factory">
+			<lookup name="item">GtkListItem</lookup>
+			</closure>
+			</binding>
+			</object>
+			</property>
+			</template>
+			</interface>
+			]]></property>
+                      </object>
+                    </property>
+		  </object>
+		</child>
+		<!-- Star andre kolonne: -->
+		<child>
+		  <object class="GtkColumnViewColumn">
+                    <property name="title">Serienummer</property>
+                    <property name="factory">
+                      <object class="GtkBuilderListItemFactory">
+			<property name="bytes"><![CDATA[
+			<?xml version="1.0" encoding="UTF-8"?>
+			<interface>
+			<template class="GtkListItem">
+			<property name="child">
+			<object class="GtkLabel">
+			<property name="hexpand">TRUE</property>
+			<property name="xalign">0</property>
+			<binding name="label">
+			<closure type="gchararray" function="get_serial_factory">
+			<lookup name="item">GtkListItem</lookup>
+			</closure>
+			</binding>
+			</object>
+			</property>
+			</template>
+			</interface>
+			]]></property>
+                      </object>
+                    </property>
+		  </object>
+		</child>
+              </object>
+            </child>
+	  </object>
+	</child> <!-- scrolled window -->
+	    
+	<child type="tab">
+	  <object class="GtkLabel" id="usbfane">
+	    <property name="label">USB</property>
+	  </object>
+	</child>
+	<!-- Slutt USB-fane -->
+	
+	<!-- Start nettverksfane -->
+	<child>
+	  <object id="grid" class="GtkGrid">
+	    <child>
+	      <object id="button1" class="GtkLockButton">
+		<property name="label">Button 1</property>
+		<layout>
+		  <property name="column">0</property>
+		  <property name="row">0</property>
+		</layout>
+	      </object>
+	    </child>
+	    <child>
+	      <object id="button2" class="GtkButton">
+		<property name="label">Button 2</property>
+		<layout>
+		  <property name="column">1</property>
+		  <property name="row">0</property>
+		</layout>
+	      </object>
+	    </child>
+	    <child>
+	      <object id="quit" class="GtkButton">
+		<property name="label">Quit</property>
+		<layout>
+		  <property name="column">0</property>
+		  <property name="row">1</property>
+		  <property name="column-span">2</property>
+		</layout>
+	      </object>
+	    </child>
+	  </object>
+	</child>
+	<child type="tab">
+	  <object class="GtkLabel" id="nettverksfane">
+	    <property name="label">Nettverk</property>
+	  </object>
+	</child>
+	<!-- Slutt nettverksfane -->
+      </object> <!-- notebook -->
     </child>
-  </object>
+  </object> <!-- window -->
+  
 </interface>
