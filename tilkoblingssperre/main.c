@@ -1,15 +1,24 @@
 #include <gtk/gtk.h>
 #include <glib/gstdio.h>
 
-char *get_product_name_factory(GtkListItem *item, GtkStringList *sl){
-  // Todo returner noe. Hvordan ordner vi med minne osv? blir det unreffa?
-  return g_strdup(gtk_string_list_get_string(sl, 0)); // bør man duppe stringen?
-  //return g_strdup ();
+char *get_product_name_factory(GtkListItem *item){
+  gpointer obj = gtk_list_item_get_item(item);
+  if (!GTK_IS_STRING_LIST(obj)) {
+    //g_warning("get_product_name_factory: Element is not a GtkStringList");
+    return g_strdup("Unknown");
+  }
+  GtkStringList *sl = GTK_STRING_LIST(obj);
+  return g_strdup(gtk_string_list_get_string(sl, 0));
 }
 
-char *get_serial_factory(GtkListItem *item, GtkStringList *sl){
-  // Todo returner noe. Hvordan ordner vi med minne osv? blir det unreffa?
-  return g_strdup (gtk_string_list_get_string(sl, 1)); // bør man duppe stringen?
+char *get_serial_factory(GtkListItem *item){
+  gpointer obj = gtk_list_item_get_item(item);
+  if (!GTK_IS_STRING_LIST(obj)) {
+    //g_warning("get_serial_factory: Element is not a GtkStringList");
+    return g_strdup("Unknown");
+  }
+  GtkStringList *sl = GTK_STRING_LIST(obj);
+  return g_strdup(gtk_string_list_get_string(sl, 1));
 }
 
 
