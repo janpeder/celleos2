@@ -40,6 +40,11 @@ brukermanual/celleos2_brukermanual.pdf
 brukermanual/celleos2_brukermanual.ps*
 
 config/includes.chroot_after_packages/root/celleos_build_date
+config/includes.chroot_after_packages/usr/bin/
+
+celleos_usbguard_generate_policy_hub_hid/celleos_usbguard_generate_policy_hub_hid
+celleos_usbguard_generate_policy_hub_hid/*.o
+
 
 tilkoblingssperre/*.o
 tilkoblingssperre/tilkoblingssperre
